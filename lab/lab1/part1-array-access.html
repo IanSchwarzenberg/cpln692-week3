@@ -75,9 +75,54 @@
 
     ===================== */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+
+//Task 1:
+var restaurantData = [
+  {
+    "lat":39.955127,
+    "lng":-75.194439,
+    "label":"Axis Pizza",
+  },
+  {
+    "lat":39.953622,
+    "lng":-75.187519,
+    "label":"Wahoo's",
+  },
+  {
+    "lat":39.955886,
+    "lng":-75.190606,
+    "label":"Landmark Americana"
+  },
+  {
+    "lat":39.952462,
+    "lng":-75.168466,
+    "label":"Chick Fil-A"
+  }, //Added as part of Task 3, the web map loads fine after this was added
+  {
+    "lat":39.950769,
+    "lng":-75.158456,
+    "label":"Rosa's Fresh Pizza"
+  } //Added as part of Task 3, the web map loads fine after this was added
+];
+
+
+//Task 2:
+for (var i=0; i < restaurantData.length; i = i+1) {
+  console.log(restaurantData[i])
+  }
+
+var makeAMarker = (obj) => {
+  return L.marker([obj.lat, obj.lng]).bindPopup(obj.label) //Added this .bindPopup(obj.label) command for Task 4
+  }
+
+for (var i=0; i <restaurantData.length; i = i+1) {
+  makeAMarker(restaurantData[i]).addTo(map)
+}
+
+
+    //L.marker([39.955127, -75.194439]).addTo(map);
+    //L.marker([39.955127, -75.194439]).addTo(map);
+    //L.marker([39.955127, -75.194439]).addTo(map);
 
     /* =====================
 

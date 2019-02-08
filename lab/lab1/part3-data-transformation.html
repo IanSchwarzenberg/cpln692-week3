@@ -13,14 +13,14 @@
 
     <!--javascript imports-->
     <script src="leaflet.js"></script>
-    <script src="part4-data-clean.js"></script>
-    <script src="part4-data-dirty.js"></script>
+    <script src="part3-data-clean.js"></script>
+    <script src="part3-data-dirty.js"></script>
 
     <script>
 
     /* =====================
 
-    # Lab 1, Part 4 — Data Transformation
+    # Lab 1, Part 3 — Data Transformation
 
     ## Introduction
 
@@ -71,6 +71,17 @@
 
     ===================== */
 
+//BASICALLY OBTAINED FROM http://adripofjavascript.com/blog/drips/filtering-arrays-with-array-filter.html:
+    var dataFiltered = []; //First creates the initially empty ARRAY variable since [] means empty array
+
+    for (var i = 0; i < data.length ; i++) {
+        if (data[i][3] > 20) { //Loop statement which selects out any sub-array (bike station) with more than 20 docks (the "third" element of each sub-array shows each station's dock amount)
+            dataFiltered.push(data[i]); //Pushes the sub-arrays that meet the criteria above to the dataFiltered variable, turning dataFiltered from empty to populated with the sub-arrays from the data variable which meet the criteria above
+        }
+    }
+
+  console.log(dataFiltered) //It works
+
 
 
     /* =====================
@@ -98,7 +109,13 @@
 
     ===================== */
 
+    var makeAMarker = (obj) => { //"obj" is the user input, in this case "obj" will be dataFiltered
+      return L.marker([obj[1], obj[0]]).bindPopup(obj[2]) //the "first" item of each sub-array isi the lat and the "zeroth" items for them are the long coordinates (IN JAVA AND GOOGLE MAPS, COORDINATES ARE MAPS AS LAT/LON FOR SOME REASON). The "second" item of each sub-array is the station's name.
+      }
 
+    for (var i=0; i <dataFiltered.length; i = i+1) {
+      makeAMarker(dataFiltered[i]).addTo(map) //Uses the makeAMarker function created above to add the points to the map
+    }
 
     /* =====================
 

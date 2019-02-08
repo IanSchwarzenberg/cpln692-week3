@@ -26,8 +26,25 @@
     Start code
 
     ===================== */
-
-
+//BASICALLY OBTAINED FROM https://stackoverflow.com/questions/13845437/from-1-to-100-print-ping-if-multiple-of-3-pong-if-multiple-of-5-or-else-p:
+    for (var x=1; x <= 100; x++) {
+        var skip = 0; //Creates a variable called "skip" with a value of 0 that makes the statement actually log the values that don't fit any of the 3 criteria below to the console
+        if (x % 15 == 0) { // This means "if the number divided by 15 has a remainder of 0, then return FizzBuzz (% means remainder of). Any number divisible by 15 with a remainder of 0 is simultaneously divisible by both 3 and 5.
+            console.log('FizzBuzz'); //Logs the appropriate word to put in place of the numbers that fit this criteria
+            skip = 1; //For numbers that don't fit this criteria, it makes sure they're logged to the console
+        } else //THE USE OF else IS EXTREMELY IMPORTANT because this prevents numbers divisible by both 3 and 5 from having 'FizzBuzz', 'Buzz' and 'Fizz' all printed at the same time, else excludes the other criteria from being true if this is which makes only 'FizzBuzz' print in this case
+        if (x % 5 == 0) {
+            console.log('Buzz');
+            skip = 1;
+        } else
+        if (x % 3 == 0) {
+            console.log('Fizz');
+            skip = 1;
+        }
+        if (!skip) {
+            console.log(x);
+        } //EXTREMELY IMPORTANT because this if statement makes it so any number that was skipped (didn't fit any of the criteria above) gets logged to the console in its original numeric form
+    };
 
     /* =====================
 
